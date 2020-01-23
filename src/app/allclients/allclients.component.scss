@@ -1,0 +1,46 @@
+body {
+    line-height: 2;
+  }
+  
+  table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: rgb(205, 187, 216);
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: left;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  button {
+    background: rgb(97, 71, 112);
+    border: none;
+    color: white;
+    font-size: .7em;
+
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 0.7em;
+    cursor: pointer;
+  }
+  

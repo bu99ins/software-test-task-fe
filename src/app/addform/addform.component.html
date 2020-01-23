@@ -1,0 +1,68 @@
+<body>
+  <h1>Please fill in your data:</h1>
+
+  <form [formGroup]="messageForm" (ngSubmit)="createOne()">
+
+    <input 
+        type="text" 
+        placeholder="First name"
+        formControlName="firstname" 
+        required maxlength="64" 
+        required pattern="[A-Za-z]+"
+        style="text-transform: capitalize">
+      <div *ngIf="submitted && firstName.errors" class="errors">
+        <div *ngIf="firstName.errors.required">
+          First name is required
+        </div>
+        <div *ngIf="firstName.errors.maxlength">
+          First name must contain less than 64 letters
+        </div>
+        <div *ngIf="firstName.errors.pattern">
+          First name can only contain letters
+        </div>
+      </div>
+
+      <input 
+        type="text" 
+        placeholder="Surname"
+        formControlName="surname" 
+        required maxlength="64" 
+        required pattern="[a-zA-Z]+"
+        style="text-transform: capitalize">
+      <div *ngIf="submitted && surName.errors" class="errors">
+        <div *ngIf="surName.errors.required">
+          Surname is required
+        </div>
+        <div *ngIf="surName.errors.maxlength">
+          Surname must contain less than 64 letters
+        </div>
+        <div *ngIf="surName.errors.pattern">
+          Surname can only contain letters
+        </div>
+      </div>
+
+      <input 
+        type="text"
+        placeholder="Phone number" 
+        formControlName="phonenumber" 
+        required minlength=14 
+        required maxlength="19" 
+        required pattern="^\+4407[0-9]+">
+      <div *ngIf="submitted && phoneNumber.errors" class="errors">
+        <div *ngIf="phoneNumber.errors.required">
+          Phone number is required
+        </div>
+        <div *ngIf="phoneNumber.errors.minlength">
+          Phone number is too short
+        </div>
+        <div *ngIf="phoneNumber.errors.pattern">
+          Phone number should start with +4407 and can contain only numbers
+        </div>
+      </div>
+    
+    <input type="submit" value="Save" class="button">
+
+  </form>
+
+  <h3 *ngIf="success" class="success" style="text-transform: capitalize">Thank You, {{ this.messageForm.value.firstname }}. </h3>
+</body>

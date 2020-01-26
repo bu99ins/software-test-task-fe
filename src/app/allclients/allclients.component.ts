@@ -18,12 +18,12 @@ export class AllclientsComponent implements OnInit {
     this.getList();
   }
   getList() {
-    return this.http.get('api/v1/clients').subscribe((data: Client[]) => this.clientData = [...data]);
+    this.http.get('api/v1/clients').subscribe((data: Client[]) => this.clientData = [...data]);
   }
   startUpdate(clientId: string) {
-    return this.router.navigate(['/updateform', clientId]);
+    this.router.navigate(['/updateform', clientId]);
   }
   deleteById(clientId: string) {
-    return this.http.delete('api/v1/clients/' + clientId).subscribe(() => this.getList());
+    this.http.delete('api/v1/clients/' + clientId).subscribe(() => this.getList());
   }
 }

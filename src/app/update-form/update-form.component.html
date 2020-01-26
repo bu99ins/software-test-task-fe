@@ -1,0 +1,47 @@
+<body>
+  <h1>You may change user data:</h1>
+
+  <form [formGroup]="messageForm" (ngSubmit)="updateOne()">
+
+    <input 
+        type="text" 
+        placeholder="First name"
+        formControlName="firstname" 
+        required maxlength="64" 
+        required pattern="[A-Za-z]+"
+        style="text-transform: capitalize">
+      <div *ngIf="submitted && firstName.errors" class="errors">
+        <div *ngIf="firstName.errors.required">
+          First name is required
+        </div>
+        <div *ngIf="firstName.errors.maxlength">
+          First name must contain less than 64 letters
+        </div>
+        <div *ngIf="firstName.errors.pattern">
+          First name can only contain letters
+        </div>
+      </div>
+
+      <input 
+        type="text" 
+        placeholder="Surname"
+        formControlName="surname" 
+        required maxlength="64" 
+        required pattern="[a-zA-Z]+"
+        style="text-transform: capitalize">
+      <div *ngIf="submitted && surName.errors" class="errors">
+        <div *ngIf="surName.errors.required">
+          Surname is required
+        </div>
+        <div *ngIf="surName.errors.maxlength">
+          Surname must contain less than 64 letters
+        </div>
+        <div *ngIf="surName.errors.pattern">
+          Surname can only contain letters
+        </div>
+      </div>
+
+    <input type="submit" value="Save" class="button">
+
+  </form>
+</body>

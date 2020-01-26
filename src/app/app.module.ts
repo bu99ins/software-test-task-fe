@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddformComponent } from './addform/addform.component';
+import { UpdateFormComponent } from './update-form/update-form.component';
 import { AllclientsComponent } from './allclients/allclients.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
@@ -14,6 +15,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     AddformComponent,
+    UpdateFormComponent,
     AllclientsComponent,
     NavComponent,
     HomeComponent

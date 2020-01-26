@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import Client from '../client';
 
 @Component({
   selector: 'app-update-form',
@@ -12,6 +15,7 @@ export class UpdateFormComponent implements OnInit {
 
   messageForm: FormGroup;
   submitted = false;
+  resourceUri = 'api/v1/clients/';
 
   get firstName() {
     return this.messageForm.get('firstname');
@@ -21,9 +25,20 @@ export class UpdateFormComponent implements OnInit {
     return this.messageForm.get('surname');
   }
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    this.resourceUri += this.route.snapshot.params['id'];
+    this.http.get(this.resourceUri)
+      .subscribe((data: Client) => {
+        this.messageForm.get('firstname').setValue(data.firstname);
+        this.messageForm.get('surname').setValue(data.surname);
+      });
+
     this.messageForm = this.formBuilder.group({
       firstname: ['', [Validators.required, Validators.maxLength, Validators.pattern]],
       surname: ['', [Validators.required, Validators.maxLength, Validators.pattern]]
@@ -40,10 +55,10 @@ export class UpdateFormComponent implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post('api/v1/clients', {
+    return this.http.patch(this.resourceUri, {
       'firstname': this.messageForm.value.firstname,
       'surname': this.messageForm.value.surname
-    }, httpOptions).subscribe((data) => console.log(data));
+    }, httpOptions).subscribe((data) => this.router.navigate(['/allclients']));
   }
 
 }

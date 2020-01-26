@@ -8,6 +8,7 @@
             <th>firstname</th>
             <th>surname</th>
             <th></th>
+            <th></th>
           </tr>
       </thead>
       <tbody>
@@ -17,6 +18,7 @@
           <td>{{ Client.phonenumber }}</td>
           <td style="text-transform: capitalize">{{ Client.firstname }}</td>
           <td style="text-transform: capitalize">{{ Client.surname }}</td>
+          <td><button (click)='startUpdate(Client.id)'>CHANGE</button></td>
           <td><button (click)='deleteById(Client.id)'>DELETE</button></td>
       </tr>
     </tbody>
